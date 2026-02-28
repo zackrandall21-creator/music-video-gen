@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Video Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎬 Music Video Generator</h1>
+      <p class="subtitle">Drop a song. Get a cinematic music video.</p>
+    </header>
+
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-icon">🎵</div>
+      <p>Drag & drop your audio file here</p>
+      <p class="small">MP3, WAV, FLAC — up to 50MB</p>
+      <input type="file" id="audioInput" accept="audio/*" hidden>
+      <button class="btn-secondary" onclick="document.getElementById('audioInput').click()">Browse File</button>
+    </div>
+
+    <div class="settings" id="settings" style="display:none">
+      <div class="file-info" id="fileInfo"></div>
+      <div class="setting-row">
+        <label>Visual Style</label>
+        <select id="visualStyle">
+          <option value="cinematic photorealistic, golden hour lighting, shallow depth of field, 4K">Cinematic (Recommended)</option>
+          <option value="dark moody cinematic, blue and orange color grade, film noir">Dark Moody</option>
+          <option value="vibrant colorful music video, neon lights, energetic, high contrast">Vibrant Neon</option>
+          <option value="pastoral countryside, natural light, gentle organic movement">Nature / Pastoral</option>
+        </select>
+      </div>
+      <div class="setting-row">
+        <label>Clip Duration</label>
+        <select id="clipDuration">
+          <option value="4">4 seconds (more cuts)</option>
+          <option value="5" selected>5 seconds (balanced)</option>
+          <option value="6">6 seconds (fewer cuts)</option>
+        </select>
+      </div>
+      <button class="btn-primary" id="generateBtn" onclick="startGeneration()">🎬 Generate Music Video</button>
+    </div>
+
+    <div class="progress-panel" id="progressPanel" style="display:none">
+      <h3>Generating your music video...</h3>
+      <div class="stages">
+        <div class="stage" id="stage-analysis"><span class="stage-icon">🎧</span> Analyzing audio</div>
+        <div class="stage" id="stage-prompts"><span class="stage-icon">✍️</span> Writing scene prompts</div>
+        <div class="stage" id="stage-clips"><span class="stage-icon">🎥</span> Generating video clips</div>
+        <div class="stage" id="stage-assembly"><span class="stage-icon">🎞️</span> Assembling final video</div>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <p class="eta" id="etaText">Estimated time: 35–45 minutes</p>
+    </div>
+
+    <div class="result-panel" id="resultPanel" style="display:none">
+      <h3>✅ Your music video is ready!</h3>
+      <video id="resultVideo" controls></video>
+      <a class="btn-primary" id="downloadBtn" download>⬇️ Download MP4</a>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
