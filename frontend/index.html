@@ -13,23 +13,29 @@
       <p class="subtitle">Drop a song. Get a cinematic music video.</p>
     </header>
 
+    <!-- Upload -->
     <div class="upload-zone" id="uploadZone">
       <div class="upload-icon">🎵</div>
       <p>Drag & drop your audio file here</p>
-      <p class="small">MP3, WAV, FLAC — up to 50MB</p>
+      <p class="small">MP3, WAV, FLAC &mdash; up to 50MB</p>
       <input type="file" id="audioInput" accept="audio/*" hidden>
       <button class="btn-secondary" onclick="document.getElementById('audioInput').click()">Browse File</button>
     </div>
 
+    <!-- Settings -->
     <div class="settings" id="settings" style="display:none">
       <div class="file-info" id="fileInfo"></div>
+      <div class="setting-row">
+        <label>Song Title</label>
+        <input type="text" id="songTitle" placeholder="My Song" class="text-input">
+      </div>
       <div class="setting-row">
         <label>Visual Style</label>
         <select id="visualStyle">
           <option value="cinematic photorealistic, golden hour lighting, shallow depth of field, 4K">Cinematic (Recommended)</option>
-          <option value="dark moody cinematic, blue and orange color grade, film noir">Dark Moody</option>
-          <option value="vibrant colorful music video, neon lights, energetic, high contrast">Vibrant Neon</option>
-          <option value="pastoral countryside, natural light, gentle organic movement">Nature / Pastoral</option>
+          <option value="dark moody cinematic, blue and orange color grade, film noir, 4K">Dark Moody</option>
+          <option value="vibrant colorful music video, neon lights, energetic, high contrast, 4K">Vibrant Neon</option>
+          <option value="pastoral countryside, natural light, gentle organic movement, 4K">Nature / Pastoral</option>
         </select>
       </div>
       <div class="setting-row">
@@ -43,6 +49,7 @@
       <button class="btn-primary" id="generateBtn" onclick="startGeneration()">🎬 Generate Music Video</button>
     </div>
 
+    <!-- Progress -->
     <div class="progress-panel" id="progressPanel" style="display:none">
       <h3>Generating your music video...</h3>
       <div class="stages">
@@ -52,13 +59,23 @@
         <div class="stage" id="stage-assembly"><span class="stage-icon">🎞️</span> Assembling final video</div>
       </div>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-      <p class="eta" id="etaText">Estimated time: 35–45 minutes</p>
+      <p class="eta" id="etaText">Starting pipeline on Kaggle...</p>
+      <a class="btn-secondary" id="kaggleLinkBtn" href="#" target="_blank" style="display:none;text-align:center;margin-top:0.5rem">🔗 Watch live on Kaggle</a>
     </div>
 
+    <!-- Error -->
+    <div class="error-panel" id="errorPanel" style="display:none">
+      <h3>❌ Pipeline error</h3>
+      <p id="errorText"></p>
+      <button class="btn-secondary" onclick="resetApp()">Try Again</button>
+    </div>
+
+    <!-- Result -->
     <div class="result-panel" id="resultPanel" style="display:none">
       <h3>✅ Your music video is ready!</h3>
       <video id="resultVideo" controls></video>
-      <a class="btn-primary" id="downloadBtn" download>⬇️ Download MP4</a>
+      <a class="btn-primary" id="downloadBtn" href="/api/download" download>⬇️ Download MP4</a>
+      <button class="btn-secondary" onclick="resetApp()" style="margin-top:0.5rem">Make Another</button>
     </div>
   </div>
   <script src="app.js"></script>

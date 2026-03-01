@@ -1,0 +1,12 @@
+{
+  "name": "music-video-gen",
+  "version": "1.0.0",
+  "description": "AI music video generator — audio in, cinematic video out",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "formidable": "^3.5.1",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0"
+  }
+}
